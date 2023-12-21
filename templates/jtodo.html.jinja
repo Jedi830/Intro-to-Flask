@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color: darkmagenta;}
+body {text-align: center;}
+</style>
+<body>
+<h1 style="color: hotpink;", >Welcome to my todo application</h1>
+
+<h3 style="color: blueviolet;">Todo list</h3>
+
+<ul>
+{% for x in js_todos %}
+<li>{{x}}</li>
+{%endfor%}
+</ul>
+<form method="post">
+<input nam="new_todo">
+<input type="submit">
+</form>
+
+
+</body>
+
+
+
+
+
+</head>
+</html>
