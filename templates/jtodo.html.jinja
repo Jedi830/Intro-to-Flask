@@ -2,21 +2,27 @@
 <html>
 <head>
 <style>
-body {background-color: darkmagenta;}
+body {background-color: rgb(135, 59, 160);}
 body {text-align: center;}
 </style>
 <body>
-<h1 style="color: hotpink;", >Welcome to my todo application</h1>
+<h1 style="color: hotpink;",>Welcome to my todo application</h1>
 
-<h3 style="color: blueviolet;">Todo list</h3>
+<h3 style="color: rgb(196, 176, 215);">Todo list</h3>
+
 
 <ul>
 {% for x in js_todos %}
-<li>{{x}}</li>
+    <li>
+        {{x}}
+        <form method="POST" action="/delete_todo/{{loop.index0}}">
+            <input style="color: rgb(107, 47, 219)"type="submit" value="Delete">
+        </form>
+    </li>
 {%endfor%}
 </ul>
 <form method="post">
-<input nam="new_todo">
+<input name="new_todo">
 <input type="submit">
 </form>
 
