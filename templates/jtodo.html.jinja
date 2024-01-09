@@ -14,8 +14,8 @@ body {text-align: center;}
 <ul>
 {% for x in js_todos %}
     <li>
-        {{x}}
-        <form method="POST" action="/delete_todo/{{loop.index0}}">
+        {{ x['description'] }}
+        <form method="POST" action="/delete_todo/{{ x['id'] }}">
             <input style="color: rgb(107, 47, 219)"type="submit" value="Delete">
         </form>
     </li>

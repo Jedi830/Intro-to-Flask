@@ -16,16 +16,24 @@ connection = pymysql.connect(
 def index():
     if request.method == 'POST':
         new_todo = request.form["new_todo"]
-        todo.append(new_todo)
+        cursor = connection.cursor()
+        cursor.execute(f"INSERT INTO `todos`(`description`) VALUES ('{new_todo}')")
+        cursor.close
+        connection.commit
+
     cursor = connection.cursor()
-    cursor.execute("SELECT `description` FROM `todos` ")
+    cursor.execute("SELECT * FROM `todos` ")
     results = cursor.fetchall() 
+    cursor.close()
     return render_template("jtodo.html.jinja", js_todos = results)
      
 
 @app.route('/delete_todo/<int:todo_index>', methods = ['POST'])
 def todo_delete(todo_index):
-    del todos[todo_index]
+    cursor = connection.cursor()
+    cursor.execute(f"DELETE FROM `todos` WHERE `id` = {todo_index} ")
+    cursor.close
+    connection.commit
     return redirect('/')
 
 
