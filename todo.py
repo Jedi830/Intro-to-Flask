@@ -22,7 +22,7 @@ def index():
         connection.commit
 
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM `todos` ")
+    cursor.execute("SELECT * FROM `todos` ORDER BY `complete`")
     results = cursor.fetchall() 
     cursor.close()
     return render_template("jtodo.html.jinja", js_todos = results)
@@ -36,5 +36,11 @@ def todo_delete(todo_index):
     connection.commit
     return redirect('/')
 
-
+@app.route('/complete_todo/<int:todo_index>', methods = ['POST'])
+def todo_complete(todo_index):
+    cursor = connection.cursor()
+    cursor.execute("UPDATE `todos` SET `complete` = 1 WHERE `id` = {todo_index}")
+    cursor.close
+    connection.commit
+    return redirect('/')
 

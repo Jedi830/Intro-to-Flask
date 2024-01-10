@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
 <style>
-body {background-color: rgb(135, 59, 160);}
-body {text-align: center;}
+
+    body {background-color: rgb(135, 59, 160);}
+    body {text-align: center;}
+        .complete {
+            text-decoration: line-through;
+            font-style: italic
+    }
+    
 </style>
-<body>
+</head>
+
+
 <h1 style="color: hotpink;",>Welcome to my todo application</h1>
 
-<h3 style="color: rgb(196, 176, 215);">Todo list</h3>
-
+<h3 style="color: rgb(126, 101, 150);">Todo list</h3>
 
 <ul>
 {% for x in js_todos %}
-    <li>
+    <li class="{% if x['complete']%}complete{%endif%}">
         {{ x['description'] }}
+
+        {% if x['complete'] %}✅ {%endif%}
+
         <form method="POST" action="/delete_todo/{{ x['id'] }}">
-            <input style="color: rgb(107, 47, 219)"type="submit" value="Delete">
+            <input style="color: rgb(107, 47, 219)"type="submit" value="Delete" class="btn btn-outline-danger">
         </form>
+
+        <form method="POST" action="/complete_todo/{{ x['id'] }}">
+            <input style="" type="submit" value="Mark complete" class="btn btn-primary">
+        </form>
+
     </li>
 {%endfor%}
 </ul>
