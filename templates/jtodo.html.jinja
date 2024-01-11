@@ -20,7 +20,7 @@
 
 <h1 style="color: hotpink;",>Welcome to my todo application</h1>
 
-<h3 style="color: rgb(126, 101, 150);">Todo list</h3>
+<h3 style="color: rgb(13, 235, 157);">Todo list</h3>
 
 <ul>
 {% for x in js_todos %}
@@ -30,7 +30,7 @@
         {% if x['complete'] %}✅ {%endif%}
 
         <form method="POST" action="/delete_todo/{{ x['id'] }}">
-            <input style="color: rgb(107, 47, 219)"type="submit" value="Delete" class="btn btn-outline-danger">
+            <input style="color: rgb(125, 188, 244)"type="submit" value="Delete" class="btn btn-outline-danger">
         </form>
 
         <form method="POST" action="/complete_todo/{{ x['id'] }}">
